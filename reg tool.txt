@@ -1,0 +1,78 @@
+> basic version without optimizations just assigns registers by line
+
+open input file (or initially, get list)
+open output file
+
+for line in file
+	tokenize
+	select function on instruction arity
+	{or emit if a noop line: blank, comment, tag:}
+	(make associations)
+	(return string of full instruction with comments)
+	emit string to out file
+
+close both files
+
+---
+
+> by arity
+ [a0-3,v0`1 associated at outset]
+save opcode
+for tokens
+	if relevant token
+		if symbol already associated
+			save symbol's register
+		elif t reg available
+			save t reg
+			associate symbol and t reg
+		elif s reg available
+			same as above
+		else
+			associate symbol & sp depth + 1
+			save above
+		hold symbol name (for comment)
+	elif tag
+		save tag
+	elif comment begin
+		save #
+		save the held symbol names, comma separated (strip flag)
+		save remaining comment tokens
+		break
+	else (no tag)
+		save #
+		save the held symbol names, comma separated (strip flag)
+		break
+return saved tokens as string
+
+---
+
+> improvements
+read whole program
+	find last line use of symbol, return register to pool thereafter
+
+[woo, register coloring via graph simplification]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
