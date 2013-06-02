@@ -50,6 +50,9 @@ return saved tokens as string
 read whole program
 	find last line use of symbol, return register to pool thereafter
 
+see use past a jal, save referenced to stack & restore
+
+
 [woo, register coloring via graph simplification]
 
 
